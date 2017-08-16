@@ -9,4 +9,5 @@ Run using
 
 
  
-<img src="media/results1.png" width="700">
+<img src="media/results1.png" width="400">
+<img src="media/results2.png" width="400">
