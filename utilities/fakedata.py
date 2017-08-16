@@ -1,17 +1,32 @@
 import numpy as np
     
-def generateXORData():
-    data = np.zeros([4,2])
-    data[0,:] = [0,0]
-    data[1,:] = [0,1]
-    data[2,:] = [1,0]
-    data[3,:] = [1,1]
-    labels = np.array([0,1,1,0])
+def generateXORData(n = 200, test = True):
+    """Generate XOR Data for comparing NN and logistic regression."""
+    data = np.zeros([n,2])
+    labels = np.zeros(n)
+    k, r = n//4, n%4
+    i = 0
+
+    pnt = [[0,0],[0,1],[1,0],[1,1]]
+    lab = [0,1,1,0]
+    for t in range(4): 
+        for j in range(k):            
+            data[i,:] = pnt[t]
+            labels[i] = lab[t]
+            i += 1
+
+    if test:
+        np.random.seed(0)
+    data = data + .2*np.random.randn(*data.shape)    
     labels = (np.arange(2) == labels[:,None]).astype(np.float64)
+    
+    idx    = np.random.permutation(data.shape[0])
+    data   = data[idx,:]
+    labels = labels[idx]
     return data, labels
 
 
-def generate2BlobData(n = 100, test = True):
+def generate2BlobData(n = 200, test = True):
     """Generates data from two different gaussian distributions.
     
     Arguments:

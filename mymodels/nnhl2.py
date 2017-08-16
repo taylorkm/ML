@@ -3,8 +3,8 @@ import tensorflow as tf
 # TODO: How could I automate these?
 d = 2
 k = 2
-nhidden1 = 5
-nhidden2 = 5
+nhidden1 = 2
+nhidden2 = 2
 
 # THE MODEL
 def inference(dataset_pl):

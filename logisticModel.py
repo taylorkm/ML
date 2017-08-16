@@ -7,9 +7,11 @@ import utilities.inspector as inspector
 import mymodels.linear as lm
 
 
-# This code implements multinomial logistic 
-# regression using simple gradient descent.
-# 
+"""
+This code implements multinomial logistic regression using gradient descent.
+
+"""
+
 
 def accuracy(predictions, labels):
     numcorrect  = np.sum( np.argmax(predictions, 1) == np.argmax(labels, 1), dtype=float )
@@ -30,7 +32,7 @@ def runtraining(
     test_dataset, 
     test_labels):
         
-    num_training_steps = 2001
+    num_training_steps = 3001
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # CONSTRUCT COMPUTATION GRAPH 
@@ -65,7 +67,7 @@ def runtraining(
             _, l, predictions = session.run([optimize_op, loss_op, eval_op])
             
             # Track performance
-            if (step % 100 == 0):                
+            if (step % (num_training_steps / 10) == 0):                
                 print( 'Training accuracy at step %d: %.1f%%' % (step, accuracy( predictions, train_labels) ))
         
 
@@ -88,10 +90,11 @@ if __name__=="__main__":
     # # # # # # # #
     # CREATE DATA #
     # # # # # # # #
-    data, labels = fakedata.generate2BlobData(100)    
+    # data, labels = fakedata.generate2BlobData()
+    data, labels = fakedata.generateXORData()    
     n = data.shape[0] 
 
-
+    print(data.shape)
 
     # # # # # # # # # # # # # # #
     # TRAINING/VALIDATION/TEST  #

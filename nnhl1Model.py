@@ -7,8 +7,11 @@ import utilities.inspector as inspector
 import mymodels.nnhl1 as nnhl1
 
 
-""" This code implements multinomial logistic 
- regression using simple gradient descent. """
+""" 
+This code implements a neural network with a single hidden layer
+comprising only two neurons.
+
+"""
 
 def accuracy(predictions, labels):
     numcorrect  = np.sum( np.argmax(predictions, 1) == np.argmax(labels, 1), dtype=float )
@@ -30,7 +33,6 @@ def runtraining(
     test_labels):
         
     num_training_steps = 2001
-    nhidden = 5
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # CONSTRUCT COMPUTATION GRAPH 
@@ -65,7 +67,7 @@ def runtraining(
             _, l, predictions = session.run( [optimize_op, loss_op, eval_op] )
             
             # Track performance
-            if (step % 100 == 0):
+            if (step % (num_training_steps / 10) == 0):
                 # print( 'Loss at step %d: %f' % (step, l) )
                 print( 'Training accuracy at step %d: %.1f%%' % (step, accuracy( predictions, train_labels) ))
 
@@ -86,7 +88,8 @@ if __name__=="__main__":
     # # # # # # # #
     # CREATE DATA #
     # # # # # # # #
-    data, labels = fakedata.generate2BlobData(100)    
+    # data, labels = fakedata.generate2BlobData(100)
+    data, labels = fakedata.generateXORData()
     n = data.shape[0] 
 
 

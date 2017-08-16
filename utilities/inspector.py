@@ -7,15 +7,15 @@ def isgoodprediction(predictions, labels):
 
 
 def showData(data, labels, truelabels=None):
-    # Visualization of data and their classes.
-    #
-    # Arguments:
-    #   data is a n-by-d numpy array
-    #   
-    #   labels is a n-by-k array of 1-hot encodings
-    # 
-    #   When provided, truelabels is a n-by-k array 
-    #   of the actual 1-hot encodings of the data.
+    """Visualization of data and their classes.
+    
+    Arguments:
+      data is a n-by-d numpy array
+      
+      labels is a n-by-k array of 1-hot encodings
+    
+      When provided, truelabels is a n-by-k array 
+      of the actual 1-hot encodings of the data."""
     
     n = data.shape[0]
     colors = np.dot(labels,np.arange(2)).reshape([-1]) # for color-coding labels
@@ -32,10 +32,8 @@ def showData(data, labels, truelabels=None):
             if not isgoodprediction(labels[i,:], truelabels[i,:]):            
                 incorrect_idx.append(i)        
         plt.scatter( data[incorrect_idx,0], data[incorrect_idx,1],s=50, c='k', marker='x',lw=5 ,label='misclassified')
-
-    # blue_line = mlines.Line2D([], [], color='k', marker='x', markersize=15, label='Misclassified Data')
-    plt.legend()
-    # print(help(plt.legend()))
+    
+    plt.legend()    
     plt.axes().set_aspect('equal', 'datalim')
     plt.show()
 
