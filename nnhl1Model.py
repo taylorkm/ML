@@ -77,8 +77,6 @@ def runtraining(
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     inspector.showData(train_dataset, predictions, train_labels)
 
-    
-
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -88,11 +86,9 @@ if __name__=="__main__":
     # # # # # # # #
     # CREATE DATA #
     # # # # # # # #
-    # data, labels = fakedata.generate2BlobData(100)
+    # data, labels = fakedata.generate2BlobData()
     data, labels = fakedata.generateXORData()
     n = data.shape[0] 
-
-
 
     # # # # # # # # # # # # # # #
     # TRAINING/VALIDATION/TEST  #
