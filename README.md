@@ -2,11 +2,8 @@
 
 This file provides a high-level view of writing/organizing/testing different TensorFlow models. The dataset is specified inside the `utilities.fakedata`. 
 
-Run: 
-    
-    python logisticModel.py
-    python nnhl1Model.py
 
+Demo the code by executing `runscript.py`  
 
 ### Gaussian data 
 <img src="media/results1.png" width="600">
