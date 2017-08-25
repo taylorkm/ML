@@ -29,9 +29,8 @@ def run_experiment(data, labels, model):
     num_training_steps = 1001
 
 
-    # Construct flow graph
-    graph = tf.Graph()
-    with graph.as_default():
+    # Construct flow graph    
+    with tf.Session() as session:
 
         # Inputs
         X = tf.placeholder(dtype = np.float64)
@@ -43,11 +42,7 @@ def run_experiment(data, labels, model):
         optimize_op = model.training(loss_op)
         eval_op = model.evaluate(logits_op)
 
-
-    # Execute flow graph
-    with tf.Session(graph=graph) as session:
-
-        session.run( tf.global_variables_initializer() )
+        session.run(tf.global_variables_initializer())
 
         # Train
         for step in range(num_training_steps):
@@ -78,8 +73,8 @@ if __name__=="__main__":
     # data, labels = fakedata.generate2BlobData()
     data, labels = fakedata.generateXORData()
 
-    # model = [mm.LogisticClassifier(), mm.SingleHiddenLayerNN(), mm.DoubleHiddenLayerNN()]
-    model = [mm.SingleHiddenLayerNN()]
+    model = [mm.LogisticClassifier(), mm.SingleHiddenLayerNN(), mm.DoubleHiddenLayerNN()]
+    # model = [mm.LogisticClassifier()]
 
     for m in model:
         run_experiment(data, labels, m)
