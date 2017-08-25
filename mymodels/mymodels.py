@@ -1,7 +1,6 @@
 import tensorflow as tf
 import numpy as np
 
-# TODO: How could I automate these?
 d = 2
 k = 2
 

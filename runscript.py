@@ -17,15 +17,15 @@ def run_experiment(data, labels, model):
     n = data.shape[0]
     ntrain = int(0.45*n)
     nvalid = int(0.1*n)
-    ntest  = n - ntrain - nvalid
+    ntest = n - ntrain - nvalid
 
     train_dataset = data[:ntrain,:]
     valid_dataset = data[ntrain:ntrain+nvalid,:]
-    test_dataset  = data[-ntest:,:]
+    test_dataset = data[-ntest:,:]
 
     train_labels = labels[:ntrain,:]
     valid_labels = labels[ntrain:ntrain+nvalid,:]
-    test_labels  = labels[-ntest:,:]
+    test_labels = labels[-ntest:,:]
     num_training_steps = 1001
 
 
@@ -38,10 +38,10 @@ def run_experiment(data, labels, model):
         y = tf.placeholder(dtype = np.float64)
 
         # Graph operations
-        logits_op       = model.predict(X)
-        loss_op         = model.loss(logits_op, y)
-        optimize_op     = model.training(loss_op)
-        eval_op         = model.evaluate(logits_op)
+        logits_op = model.predict(X)
+        loss_op = model.loss(logits_op, y)
+        optimize_op = model.training(loss_op)
+        eval_op = model.evaluate(logits_op)
 
 
     # Execute flow graph
@@ -78,7 +78,8 @@ if __name__=="__main__":
     # data, labels = fakedata.generate2BlobData()
     data, labels = fakedata.generateXORData()
 
-    model = [mm.LogisticClassifier(), mm.SingleHiddenLayerNN(), mm.DoubleHiddenLayerNN()]
+    # model = [mm.LogisticClassifier(), mm.SingleHiddenLayerNN(), mm.DoubleHiddenLayerNN()]
+    model = [mm.SingleHiddenLayerNN()]
 
     for m in model:
         run_experiment(data, labels, m)
